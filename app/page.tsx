@@ -19,7 +19,7 @@ export default function Page(): React.ReactNode {
   return (
     <div className="flex flex-col justify-center items-center h-full">
       <h1>All the options of indexed search</h1>
-      <div className="grid grid-cols-4 gap-4 mx-10 my-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-10 my-5">
         {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
         {examples.map((example, i) => (
           <Card
