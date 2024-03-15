@@ -1,95 +1,45 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+import React from 'react'
+import { Card, CardBody, CardHeader } from '@nextui-org/card'
+import { Image } from '@nextui-org/image'
+import { useRouter } from 'next/navigation'
 
-export default function Home() {
+export default function Page(): React.ReactNode {
+
+  const examples = [
+    {
+      title: 'Firebase + Algolia Search',
+      description: 'A simple search using Cloud Firestore and Algolia',
+      path: '/pokedex/algolia',
+      image: 'https://miro.medium.com/v2/resize:fit:4800/format:webp/1*F-OWhFp34eq3q8gMSGj_mg.png'
+    }
+  ]
+
+  const router = useRouter()
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <div className="flex flex-col justify-center items-center h-full">
+      <h1>All the options of indexed search</h1>
+      <div className="grid grid-cols-4 gap-4 mx-10 my-5">
+        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
+        {examples.map((example, i) => (
+          <Card
+            key={i} className="py-4"
+            isPressable onPress={() => router.push(example.path)}>
+            <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+              <p className="text-tiny uppercase font-bold">{example.title}</p>
+              <small className="text-default-500">{example.description}</small>
+            </CardHeader>
+            <CardBody className="overflow-visible object-fill py-2 mt-3">
+              <Image
+                alt="Card background"
+                className="object-fill rounded-xl"
+                style={{ aspectRatio: '2/1' }}
+                src={example.image} />
+            </CardBody>
+          </Card>
+        ))}
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+    </div>
+  )
 }
+
